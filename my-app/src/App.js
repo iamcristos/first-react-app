@@ -47,10 +47,18 @@ class App extends Component {
     })
   }
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: "1px solid blue",
+      padding: '10px'
+    }
     return (
       <div className="App">
           <h1>I'll Be a great react developer</h1>
-          <button onClick={this.buttonHandler.bind(this, 'Khristos')}>Click Me!!!</button>
+          <button 
+            style={style}
+            onClick={this.buttonHandler.bind(this, 'Khristos')}>Click Me!!!</button>
           <Person 
           name={this.state.person[0].name}
            year= {this.state.person[0].year}
