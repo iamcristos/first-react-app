@@ -5,11 +5,12 @@ import Person from './Person/Person'
 class App extends Component {
   state = {
      person : [
-      {
+      { id: 1,
         name: 'Cristos',
         year : '30/3/2019'
       },
       {
+        id: 2,
         name: 'Femi',
         year : '2019'
       }
@@ -17,20 +18,14 @@ class App extends Component {
     show : false
   }
 
-  buttonHandler = (newName)=>{
-    this.setState({person : [
-      {
-        name: newName,
-        year : '30/3/2019'
-      },
-      {
-        name: 'Femi',
-        year : '2/2019'
-      }
-    ],
-
-    }
-  )
+  deletePerson = (personIndex)=>{
+    // const person = this.state.person;
+    // const person = this.state.person.splice();
+    const person = [...this.state.person]
+    person.splice(personIndex, 1);
+    this.setState({
+      person: person
+    })
   }
 
   ChangerHandler = (event)=>{
@@ -60,21 +55,18 @@ class App extends Component {
       padding: '10px'
     }
 
-    const ifPerson = null
+    let ifPerson = null
     if (this.state.show) {
-      ifPerson(
+      ifPerson = (
         <div>
-            <Person 
-            name={this.state.person[0].name}
-            year= {this.state.person[0].year}
-              click={this.buttonHandler}
-              change={this.ChangerHandler}
-            />
-            <Person 
-            name={this.state.person[1].name} 
-            year={this.state.person[1].year} />
-            <Person 
-            name='Somebody'>Unknown coding year </Person>
+          {this.state.person.map((psn, index)=>{
+            // console.log(index)
+            return <Person
+            click={()=>this.deletePerson(index)}
+             name={psn.name} 
+             year={psn.year}
+             key={psn.id}/>
+          })}
         </div>
       )
     }
