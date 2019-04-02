@@ -13,7 +13,8 @@ class App extends Component {
         name: 'Femi',
         year : '2019'
       }
-    ]
+    ],
+    show : false
   }
 
   buttonHandler = (newName)=>{
@@ -26,7 +27,7 @@ class App extends Component {
         name: 'Femi',
         year : '2/2019'
       }
-    ]
+    ],
 
     }
   )
@@ -46,6 +47,11 @@ class App extends Component {
       ]
     })
   }
+
+  togglePerson = ()=>{
+    const showPerson = this.state.show;
+    this.setState({show:!showPerson})
+  }
   render() {
     const style = {
       backgroundColor: 'white',
@@ -58,18 +64,22 @@ class App extends Component {
           <h1>I'll Be a great react developer</h1>
           <button 
             style={style}
-            onClick={this.buttonHandler.bind(this, 'Khristos')}>Click Me!!!</button>
-          <Person 
-          name={this.state.person[0].name}
-           year= {this.state.person[0].year}
-             click={this.buttonHandler}
-             change={this.ChangerHandler}
-           />
-          <Person 
-          name={this.state.person[1].name} 
-          year={this.state.person[1].year} />
-          <Person 
-          name='Somebody'>Unknown coding year </Person>
+            onClick={this.togglePerson}>Click Me!!!</button>
+          { this.state.show ?
+          <div>
+            <Person 
+            name={this.state.person[0].name}
+            year= {this.state.person[0].year}
+              click={this.buttonHandler}
+              change={this.ChangerHandler}
+            />
+            <Person 
+            name={this.state.person[1].name} 
+            year={this.state.person[1].year} />
+            <Person 
+            name='Somebody'>Unknown coding year </Person>
+          </div> : null
+          }
       </div>
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'Hello it works'))
