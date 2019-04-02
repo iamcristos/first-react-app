@@ -59,14 +59,11 @@ class App extends Component {
       border: "1px solid blue",
       padding: '10px'
     }
-    return (
-      <div className="App">
-          <h1>I'll Be a great react developer</h1>
-          <button 
-            style={style}
-            onClick={this.togglePerson}>Click Me!!!</button>
-          { this.state.show ?
-          <div>
+
+    const ifPerson = null
+    if (this.state.show) {
+      ifPerson(
+        <div>
             <Person 
             name={this.state.person[0].name}
             year= {this.state.person[0].year}
@@ -78,8 +75,17 @@ class App extends Component {
             year={this.state.person[1].year} />
             <Person 
             name='Somebody'>Unknown coding year </Person>
-          </div> : null
-          }
+        </div>
+      )
+    }
+
+    return (
+      <div className="App">
+          <h1>I'll Be a great react developer</h1>
+          <button 
+            style={style}
+            onClick={this.togglePerson}>Click Me!!!</button>
+          {ifPerson}
       </div>
     );
     // return React.createElement('div', {className:'App'}, React.createElement('h1', null, 'Hello it works'))
