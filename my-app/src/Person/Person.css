@@ -1,4 +1,5 @@
 .Person{
+    background-color: white;
     margin:10px auto;
     padding: 10px;
     width: 60%;
@@ -6,3 +7,9 @@
     box-shadow: 0 2px 3px #cccccc;
     text-align: center
 }
+
+/* @media (max-width: 100px) {
+    .Person{
+        background-color: red
+    }
+} */
